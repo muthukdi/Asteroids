@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Torpedo : MonoBehaviour
 {
-	// Use this for initialization
 	public AudioClip torpedoSound;
 	void Start()
 	{
