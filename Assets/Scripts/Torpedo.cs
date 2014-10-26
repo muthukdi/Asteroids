@@ -4,6 +4,10 @@ using System.Collections;
 public class Torpedo : MonoBehaviour
 {
 	public AudioClip torpedoSound;
+	public static int hitCount;
+	public static int missCount;
+	public static int launchCount;
+
 	void Start()
 	{
 		// It took a while to figure out that transform.right always
@@ -13,6 +17,7 @@ public class Torpedo : MonoBehaviour
 		{
 			AudioSource.PlayClipAtPoint(torpedoSound, transform.position);
 		}
+		launchCount++;
 	}
 	
 	// Update is called once per frame
@@ -24,6 +29,7 @@ public class Torpedo : MonoBehaviour
 		    transform.position.y < GameController.bottomEdge)
 		{
 			Destroy(gameObject);
+			missCount++;
 		}
 	}
 }

@@ -8,6 +8,7 @@ public class Asteroid : MonoBehaviour
 	public Transform asteroid;
 	private Vector3 rotationAngle;
 	public bool thirdChunk;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -20,6 +21,7 @@ public class Asteroid : MonoBehaviour
 		{
 			// Destroy the torpedo on impact
 			Destroy(coll.gameObject);
+			Torpedo.hitCount++;
 			// Vibrate the device if it is a handheld
 			Handheld.Vibrate();
 			// Spawn an explosion

@@ -5,6 +5,7 @@ public class Explosion : MonoBehaviour
 {
 	private float timeToDeath;
 	public AudioClip explodeSound;
+
 	// Use this for initialization
 	void Start ()
 	{

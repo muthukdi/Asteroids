@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GameController : MonoBehaviour
 {
-	GameObject player;
-	GameObject asteroid;
+	GameObject playerObject;
+	GameObject asteroidObject;
 
 	// Hard coded values to implement screen wrapping effect
 	public static float rightEdge = 6.370152f;
@@ -20,22 +20,27 @@ public class GameController : MonoBehaviour
 	{
 		GUIText = GameObject.Find("GUI Text").GetComponent<GUIText> ();
 		//GUIText.text = "Screen width = " + Screen.width + ", Screen height = " + Screen.height;
-		player = GameObject.FindGameObjectWithTag("Player");
+		playerObject = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
 		// This will be null if there are no asteroids left
-		asteroid = GameObject.FindGameObjectWithTag("Asteroid");
+		asteroidObject = GameObject.FindGameObjectWithTag("Asteroid");
 		// If the game has just started
-		if (player == null && Time.time < 2.0f)
+		if (playerObject == null && Time.time < 2.0f)
 		{
-			player = GameObject.FindGameObjectWithTag("Player");
+			playerObject = GameObject.FindGameObjectWithTag("Player");
 		}
-		if (player != null && asteroid != null)
+		// If there are still asteroids and a player in the game
+		if (playerObject != null && asteroidObject != null)
 		{
-			GUIText.text = (int)(Time.time) + " seconds";
+			// Heads up display
+			GUIText.text = "Time Elapsed: " + (int)(Time.time) +
+						   " seconds,   Hit Count = " + Torpedo.hitCount + 
+						   ",   Launched = " + Torpedo.launchCount +
+						   ",   Miss Count = " + Torpedo.missCount;
 		}
 	}
 }
