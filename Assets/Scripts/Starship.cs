@@ -43,17 +43,17 @@ public class Starship : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetKey("left") || action == "left")
+		if (action == "left" || Input.GetAxis("Horizontal") < 0.0f)
 		{
 			// Rotate the startship counter-clockwise by a fixed angle
 			transform.Rotate(rotationAngle);
 		}
-		if (Input.GetKey("right") || action == "right")
+		if (action == "right" || Input.GetAxis("Horizontal") > 0.0f)
 		{
 			// Rotate the starship clockwise by a fixed angle
 			transform.Rotate(-rotationAngle);
 		}
-		if (Input.GetKey("up") || action == "up")
+		if (action == "up" || Input.GetAxis("Vertical") > 0.0f)
 		{
 			// Apply forward thrust
 			if (rigidbody2D.velocity.x < 3.0f && rigidbody2D.velocity.y < 3.0f)
@@ -61,7 +61,7 @@ public class Starship : MonoBehaviour
 				rigidbody2D.AddForce(1.0f * transform.right);
 			}
 		}
-		if (Input.GetKey("down") || action == "down")
+		if (action == "down" || Input.GetAxis("Vertical") < 0.0f)
 		{
 			// Apply backward thrust
 			if (rigidbody2D.velocity.x < 3.0f && rigidbody2D.velocity.y < 3.0f)
@@ -69,7 +69,7 @@ public class Starship : MonoBehaviour
 				rigidbody2D.AddForce(-1.0f * transform.right);
 			}
 		}
-		if ((Input.GetKey("space") || action == "fire") && Time.time > nextFire)
+		if ((action == "fire" || Input.GetButton("Fire2")) && Time.time > nextFire)
 		{
 			if (torpedoHealth > 0)
 			{
